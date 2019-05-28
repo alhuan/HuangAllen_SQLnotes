@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         editName = findViewById(R.id.editText_Name);
-        editNumber = findViewById(R.id.editText_Address);
+        editNumber = findViewById(R.id.editText_Number);
         editAddress = findViewById(R.id.editText_Address);
 
         myDb = new DatabaseHelper( this);
@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void addData(View view) {
 
-        boolean isInserted = myDb.insertData(editName.getText().toString(), editNumber.getText().toString()
+        boolean isInserted = myDb.insertData(editName.getText().toString(), editNumber.getText().toString(),
             editAddress.getText().toString());
 
         if (isInserted) {
             Toast.makeText(MainActivity.this, "Success - contact inserted", Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(MainActivity.this, "FAILED - contact inserted", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "FAILED - contact not inserted", Toast.LENGTH_LONG).show();
         }
     }
 }

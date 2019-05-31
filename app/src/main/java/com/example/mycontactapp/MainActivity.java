@@ -33,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addData(View view) {
+        Cursor curs = myDb.getAllData();
+        while (curs.getCount() > 0 && curs.moveToNext()) {
+            if (editName.getText().equals(curs.getString(1))
+                    && editNumber.getText().equals(curs.getString(2))
+                    && editAddress.getText().equals(curs.getString(3))) {
+                Toast.makeText(MainActivity.this, "FAILED - Contact already in database", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
 
         boolean isInserted = myDb.insertData(editName.getText().toString(), editNumber.getText().toString(),
             editAddress.getText().toString());
